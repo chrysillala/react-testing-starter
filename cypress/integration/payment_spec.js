@@ -22,7 +22,8 @@ describe("payment", () => {
 
     // insert amount and note, then click pay
     const note = uuidv4();
-    cy.findByPlaceholderText(/amount/i).type("5");
+    const paymentAmount = "5.00";
+    cy.findByPlaceholderText(/amount/i).type(paymentAmount);
     cy.findByPlaceholderText(/add a note/i).type(note);
     cy.findByRole("button", { name: /pay/i }).click();
 
@@ -41,6 +42,10 @@ describe("payment", () => {
     cy.findByText(note).click({ force: true });
 
     // verify if payment was made
+    // we want to check if the right note is on the page and the right payment
+    cy.findByText(`-$${paymentAmount}`).should("be.visible");
+    cy.findByText(note).should("be.visible");
+
     // verify if payment amount was deducted
   });
 });

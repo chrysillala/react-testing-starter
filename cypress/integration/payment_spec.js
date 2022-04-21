@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require("uuid");
+
 describe("payment", () => {
   it("user can make payment", () => {
     // login
@@ -18,9 +20,15 @@ describe("payment", () => {
     cy.findByRole("textbox").type("devon becker");
     cy.findByText(/devon becker/i).click();
 
-    // insert amount and note
-    // click pay
+    // insert amount and note, then click pay
+    const note = uuidv4();
+    cy.findByPlaceholderText(/amount/i).type("5");
+    cy.findByPlaceholderText(/add a note/i).type(note);
+    cy.findByRole("button", { name: /pay/i }).click();
+
     // return to transactions
+    cy.findByRole("button", { name: /return to transactions/i }).click();
+
     // verify if payment made
     // verify if payment amount was deducted
   });

@@ -28,3 +28,19 @@ test("if amount and note are entered, the pay button becomes enabled", async () 
 
   expect(await screen.findByRole("button", { name: /pay/i })).toBeEnabled();
 });
+
+// this is combining unit tests above
+// which more resembles real world user flow
+test("integration test - new payment step 2", async () => {
+  render(<TransactionCreateStepTwo sender={{ id: "5" }} receiver={{ id: "5" }} />);
+
+  expect(await screen.findByRole("button", { name: /pay/i })).toBeDisabled();
+
+  userEvent.type(screen.getByPlaceholderText(/amount/i), "50");
+  userEvent.type(screen.getByPlaceholderText(/add a note/i), "dinner");
+
+  expect(await screen.findByRole("button", { name: /pay/i })).toBeEnabled();
+
+  // can use this to debug, or `screen.debug()`
+  // screen.getByRole("");
+});

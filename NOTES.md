@@ -5,7 +5,7 @@ Testing is about translating user interactions in code and doing the right assee
 ## Test Types
 
 - Unit test: testing a single unit of code
-- Integration test: testing multiple units of code
+- Integration test: testing multiple units of code together
 - E2E test
 
 ## React Testing Library

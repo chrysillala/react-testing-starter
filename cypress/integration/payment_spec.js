@@ -29,7 +29,18 @@ describe("payment", () => {
     // return to transactions
     cy.findByRole("button", { name: /return to transactions/i }).click();
 
-    // verify if payment made
+    // go to personal payments
+    cy.findByRole("tab", { name: /mine/i }).click();
+
+    // click on payment
+    // because the element we want to click is hidden below by another ui,
+    // cypress will gives us an error because it keeps trying to click the hidden element
+    // to solve this, we can use `scrollIntoView()` or click({ force: true })
+    // here we will use force true because we dont really want to concern that right now
+    // cy.findByText(note).scrollIntoView();
+    cy.findByText(note).click({ force: true });
+
+    // verify if payment was made
     // verify if payment amount was deducted
   });
 });

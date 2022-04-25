@@ -12,6 +12,14 @@ Testing is about translating user interactions in code and doing the right assee
 
 - Query Priorities: https://testing-library.com/docs/queries/about#priority
 
+## Cypress
+
+- `yarn run cypress open` : to initialize cypress
+
+## Testing Playground Chrome Extension
+
+to help you give suggested query just by hovering your screen
+
 ## Pattern to Write Good Test
 
 Arrange-Act-Assert
